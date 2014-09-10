@@ -24,9 +24,8 @@ build_script:
   - "%PYTHON%/Scripts/pip.exe install -r requirements_dev.txt"
   - "%PYTHON%/Scripts/pip.exe install nose"
 
-# build: false  # Not a C# project, build stuff at the test step instead.
-
 test_script:
+  - "ECHO Current directory is %CD%"
   - "%PYTHON%/Scripts/nosetests honcho/test"
 
 after_test:
