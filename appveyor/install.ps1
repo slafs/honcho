@@ -82,7 +82,7 @@ function main () {
     # InstallPackage $env:PYTHON tox
     InstallPackage $env:PYTHON wheel
     InstallPackage $env:PYTHON nose
-    InstallPackage $env:PYTHON "-e C:\projects\honcho[export]
+    InstallPackage $env:PYTHON "-e C:\projects\honcho[export]"
 }
 
 main
