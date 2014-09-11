@@ -25,6 +25,7 @@ build_script:
   - "%PYTHON%/Scripts/pip.exe install nose"
 
 test_script:
+  - "SET PATH=%PATH%;%PYTHON%/Scripts"
   - "ECHO Current directory is %CD%"
   - "ECHO Current Path variable is %PATH%"
   - "%PYTHON%/Scripts/nosetests -s honcho/test"
