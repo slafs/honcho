@@ -26,6 +26,7 @@ build_script:
 
 test_script:
   - "ECHO Current directory is %CD%"
+  - "ECHO Current Path variable is %PATH%"
   - "%PYTHON%/Scripts/nosetests -s honcho/test"
 
 after_test:
