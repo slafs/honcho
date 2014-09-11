@@ -81,6 +81,7 @@ function main () {
     InstallPip $env:PYTHON
     # InstallPackage $env:PYTHON tox
     InstallPackage $env:PYTHON wheel
+    [Environment]::SetEnvironmentVariable("Path", $env:Path + ";" + $env:PYTHON + "/Scripts", "User")
     #InstallPackage $env:PYTHON nose
     #InstallPackage $env:PYTHON "-e C:\projects\honcho[export]"
 }

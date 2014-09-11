@@ -57,11 +57,7 @@ class TestCase(unittest.TestCase):
 
 
 def get_honcho_output(args):
-    print(os.getcwd())
-    print("trying to change directory")
-    print(FIXTURE_ROOT)
     os.chdir(FIXTURE_ROOT)
-    print(os.getcwd())
     cmd = ['honcho']
     cmd.extend(args)
 
