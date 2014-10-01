@@ -2,6 +2,7 @@ import argparse
 import codecs
 import logging
 import os
+import signal
 import sys
 from collections import defaultdict
 from pkg_resources import iter_entry_points
@@ -150,14 +151,15 @@ def command_run(args):
     procfile_path = _procfile_path(args.app_root, args.procfile)
     os.environ.update(_read_env(procfile_path, args.env))
 
-    if compat.ON_WINDOWS:
-        # do not quote on Windows, subprocess will handle it for us
-        # using the MSFT quoting rules
-        cmd = args.argv
-    else:
-        cmd = ' '.join(compat.shellquote(arg) for arg in args.argv)
+    cmd = args.argv
+    p = Popen(cmd, stdout=sys.stdout, stderr=sys.stderr, shell=False)
 
-    p = Popen(cmd, stdout=sys.stdout, stderr=sys.stderr)
+    def handler(signum, frame):
+        p.send_signal(signum)
+
+    signal.signal(signal.SIGINT, handler)
+    signal.signal(signal.SIGTERM, handler)
+
     p.wait()
     sys.exit(p.returncode)
 
